@@ -3,13 +3,12 @@ const app = express();
 const port = 3000;
 
 const goodsRouter = require("./routes/goods.js");
-const cartsRouter = require("./routes/carts");
 
 const connect = require("./schemas");
 connect();
 
 app.use(express.json());
-app.use("/api", [goodsRouter, cartsRouter]);
+app.use("/api", [goodsRouter]);
 
 app.post("/", (req, res) => {
   console.log(req.body);
@@ -31,10 +30,6 @@ app.get("/:id", (req, res) => {
 
   res.send(":id URI에 정상적으로 반환되었습니다.");
 });
-
-// app.get("/", (req, res) => {
-//   res.send("Hello World!");
-// });
 
 app.listen(port, () => {
   console.log(port, "포트로 서버가 열렸어요!");
